@@ -1,4 +1,4 @@
-const User = require('@ccwisp/chatdb').User;
+const User = require('chatdb-picsart-hw').User;
 
 const onDisconnect = async (io, socket) => {
   return socket.on('disconnect', async () => {

@@ -7,7 +7,7 @@ const io = socket.listen(PORT);
 
 const Knex = require('knex');
 const { Model } = require('objection');
-const knexConfig = require('@ccwisp/chatdb').knexfile;
+const knexConfig = require('chatdb-picsart-hw').knexfile;
 
 const knex = Knex(knexConfig.development);
 Model.knex(knex);

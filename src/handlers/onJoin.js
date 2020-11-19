@@ -1,6 +1,6 @@
 const auth = require('../auth');
-const User = require('@ccwisp/chatdb').User;
-const Message = require('@ccwisp/chatdb').Message;
+const User = require('chatdb-picsart-hw').User;
+const Message = require('chatdb-picsart-hw').Message;
 
 const onJoin = async (io, socket) => {
   return socket.on('join', async (token, callback) => {
