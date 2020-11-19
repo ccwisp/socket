@@ -1,9 +1,7 @@
-'use strict';
-
 const socket = require('socket.io');
-const { PORT } = require('./config');
+// const { PORT } = require('./config');
 
-const io = socket.listen(PORT);
+const io = socket.listen(8080);
 
 const Knex = require('knex');
 const { Model } = require('objection');

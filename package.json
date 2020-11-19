@@ -2,7 +2,7 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
     "format": "prettier --write \"**/*.+(js|yml|yaml|json)\"",
@@ -21,7 +21,7 @@
     "eslint-plugin-prettier": "3.1.0",
     "eslint-plugin-promise": "4.1.1",
     "eslint-plugin-standard": "^4.0.2",
-    "nodemon": "1.19.0",
+    "nodemon": "^2.0.6",
     "prettier": "^1.19.1"
   },
   "dependencies": {
