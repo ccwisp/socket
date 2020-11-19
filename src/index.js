@@ -1,7 +1,8 @@
 const socket = require('socket.io');
-// const { PORT } = require('./config');
+const { PORT } = require('./config');
 
-const io = socket.listen(5000);
+const io = socket.listen(PORT);
+console.log(PORT);
 
 const Knex = require('knex');
 const { Model } = require('objection');
