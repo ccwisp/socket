@@ -1,9 +1,7 @@
 require('dotenv').config();
 const socket = require('socket.io');
-const { PORT } = require('./config');
 
-const io = socket.listen(PORT);
-console.log(PORT);
+const io = socket.listen(process.env.PORT);
 
 const Knex = require('knex');
 const { Model } = require('objection');

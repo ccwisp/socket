@@ -11,9 +11,8 @@ const onSendMessage = async (io, socket) => {
       sender_id: id,
     };
     // Inserting message to db
-
-    io.emit('message', { user: user.login, text: message });
     await Message.query().insert(messagePayload);
+    io.emit('message', { user: user.login, text: message });
 
     callback();
   });
