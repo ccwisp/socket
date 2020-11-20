@@ -25,8 +25,9 @@ const onJoin = async (io, socket) => {
 
     // Getting message history with corresponding senders
     const messages = await Message.query()
-      .select('body', 'sender_id', 'login')
-      .joinRelated('owner');
+      .select('id', 'body', 'sender_id', 'login')
+      .joinRelated('owner')
+      .orderBy('id');
 
     messages.forEach(async message => {
       const payload = { user: message.login, text: message.body };
