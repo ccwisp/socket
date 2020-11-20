@@ -29,7 +29,7 @@ const onJoin = async (io, socket) => {
       .select('login', 'sender_id', 'body', 'id')
       .orderBy('id');
 
-    messages.forEach(message => {
+    messages.forEach(async message => {
       console.log(message);
       const payload = { user: message.login, text: message.body };
       io.emit('message', payload);
