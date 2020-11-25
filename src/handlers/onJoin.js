@@ -1,5 +1,5 @@
 const auth = require('../auth');
-const { client, chatters } = require('../redis');
+
 const User = require('chatdb-picsart-hw').User;
 const Message = require('chatdb-picsart-hw').Message;
 
@@ -11,10 +11,6 @@ const onJoin = async (io, socket) => {
 
     // Check whether current user is already online
 
-    if (chatters.indexOf(login) === -1) {
-      chatters.push(login);
-      client.set('chat_users', JSON.stringify(chatters));
-    }
     if (currentUser.socket_id === null) {
       await User.query()
         .findById(userId)
@@ -26,7 +22,7 @@ const onJoin = async (io, socket) => {
       });
     }
     io.emit('data', {
-      users: chatters, // await User.query().whereNotNull('socket_id'),
+      users: await User.query().whereNotNull('socket_id'),
     });
 
     // Getting message history with corresponding senders
