@@ -11,12 +11,11 @@ const onJoin = async (io, socket) => {
 
     // Check whether current user is already online
     if (currentUser.socket_id === null) {
+      chatters.push(login);
+      client.set('chat_users', JSON.stringify(chatters));
       await User.query()
         .findById(userId)
         .patch({ socket_id: socket.id });
-
-      chatters.push(login);
-      client.set('chat_users', JSON.stringify(chatters));
 
       socket.emit('message', {
         user: 'Administrator',
