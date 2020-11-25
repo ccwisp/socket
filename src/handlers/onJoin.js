@@ -1,4 +1,5 @@
 const auth = require('../auth');
+const { client, chatters } = require('../redis');
 const User = require('chatdb-picsart-hw').User;
 const Message = require('chatdb-picsart-hw').Message;
 
@@ -14,13 +15,16 @@ const onJoin = async (io, socket) => {
         .findById(userId)
         .patch({ socket_id: socket.id });
 
+      chatters.push(login);
+      client.set('chat_users', JSON.stringify(chatters));
+
       socket.emit('message', {
         user: 'Administrator',
         text: `${login}, welcome !`,
       });
     }
     io.emit('data', {
-      users: await User.query().whereNotNull('socket_id'),
+      users: chatters, // await User.query().whereNotNull('socket_id'),
     });
 
     // Getting message history with corresponding senders

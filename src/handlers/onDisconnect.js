@@ -1,5 +1,5 @@
 const User = require('chatdb-picsart-hw').User;
-
+const { client, chatters } = require('../redis');
 const onDisconnect = async (io, socket) => {
   return socket.on('disconnect', async () => {
     const user = await User.query().findOne({
@@ -16,8 +16,11 @@ const onDisconnect = async (io, socket) => {
       .findOne({ socket_id: socket.id })
       .patch({ socket_id: null });
 
+    chatters.splice(chatters.indexOf(login), 1);
+    client.set('chat_users', JSON.stringify(chatters));
+
     io.emit('data', {
-      users: await User.query().whereNotNull('socket_id'),
+      users: chatters, // await User.query().whereNotNull('socket_id'),
     });
   });
 };
