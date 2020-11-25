@@ -1,6 +1,6 @@
 const redis = require('redis');
 const client = redis.createClient(
-  `redis://default:${process.env.REDIS_PASS}@db-redis-picsart-chat-do-user-8334901-0.b.db.ondigitalocean.com:25061`,
+  `rediss://default:${process.env.REDIS_PASS}@db-redis-picsart-chat-do-user-8334901-0.b.db.ondigitalocean.com:25061`,
 );
 
 let chatters;
