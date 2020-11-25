@@ -10,9 +10,12 @@ const onJoin = async (io, socket) => {
     const login = currentUser.login;
 
     // Check whether current user is already online
-    if (currentUser.socket_id === null) {
+
+    if (chatters.indexOf(login) === -1) {
       chatters.push(login);
       client.set('chat_users', JSON.stringify(chatters));
+    }
+    if (currentUser.socket_id === null) {
       await User.query()
         .findById(userId)
         .patch({ socket_id: socket.id });
