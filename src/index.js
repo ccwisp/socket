@@ -1,7 +1,8 @@
 require('dotenv').config();
 const socket = require('socket.io');
-
-const io = socket.listen(process.env.PORT);
+const http = require('http');
+const server = http.createServer().listen(process.env.PORT);
+const io = socket(server);
 
 const Knex = require('knex');
 const { Model } = require('objection');
@@ -29,3 +30,5 @@ io.on('connect', socket => {
 io.on('disconnect', socket => {
   onDisconnect(io, socket);
 });
+
+module.exports = socket;
